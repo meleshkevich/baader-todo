@@ -15,8 +15,6 @@ const btn = document
 taskDisplayDiv.setAttribute("class", "hidden");
 taskLabel.setAttribute("class", "hidden");
 
-window.onload = init();
-
 const clearInputs = () => {
   const input = document.getElementById("titleInput");
   const textField = document.getElementById("descrTextField");
@@ -25,11 +23,13 @@ const clearInputs = () => {
   textField.value = "";
   prioritySelect.value = 1;
 };
+
 const clearDetails = () => {
   titleSpan.innerText = "";
   descrSpan.innerText = "";
   prioritySpan.innerText = "";
 };
+
 function ToDoConstructor() {
   this.toDoList = [];
   this.addThisTask = function (params) {
@@ -75,6 +75,7 @@ function init() {
   window.removetask = taskAppObj.removetask;
   window.gettask = taskAppObj.gettask;
 }
+window.onload = init();
 
 function clearVars() {
   var taskAppObj = null;
