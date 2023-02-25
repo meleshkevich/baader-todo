@@ -8,6 +8,8 @@ body {
 .container {
   display: flex;
   justify-content: center;
+  width: 100%;
+  height: 100%;
 }
 .parentDiv {
   background-color: lightgrey;
@@ -19,7 +21,6 @@ body {
 }
 
 .section {
-  background-color: lightblue;
   border-right: 1px solid black;
   padding-left: 1em;
   width: 100%;
@@ -30,7 +31,13 @@ body {
 }
 
 .removetask {
-  color: red;
   float: right;
+  cursor: pointer;
+  padding-right: 1em;
+}
+.removetask:hover {
+  color: red;
+}
+li {
   cursor: pointer;
 }

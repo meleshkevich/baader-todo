@@ -1,6 +1,5 @@
 /*Please include index.js in HTML code for using this.*/
-//add class hidden
-// TODO: uncomment hidden class!!!
+
 const taskDisplayDiv = document.getElementById("taskDisplayDiv");
 const titleSpan = document.getElementById("titleSpan");
 const descrSpan = document.getElementById("descrSpan");
@@ -18,6 +17,19 @@ taskLabel.setAttribute("class", "hidden");
 
 window.onload = init();
 
+const clearInputs = () => {
+  const input = document.getElementById("titleInput");
+  const textField = document.getElementById("descrTextField");
+  const prioritySelect = document.getElementById("prioritySelect");
+  input.value = "";
+  textField.value = "";
+  prioritySelect.value = 1;
+};
+const clearDetails = () => {
+  titleSpan.innerText = "";
+  descrSpan.innerText = "";
+  prioritySpan.innerText = "";
+};
 function ToDoConstructor() {
   this.toDoList = [];
   this.addThisTask = function (params) {
@@ -37,6 +49,15 @@ function ToDoConstructor() {
     const removeItem = document.getElementById(id);
     removeItem.remove();
     this.toDoList = newArr;
+    console.log(newArr.length);
+    if (newArr.length == 0) {
+      noTaskSpan.setAttribute("class", "");
+      taskLabel.setAttribute("class", "hidden");
+      taskDisplayDiv.classList.add("hidden");
+      clearDetails();
+    } else {
+      noTaskSpan.setAttribute("class", "");
+    }
   };
 
   this.gettask = function (id) {
@@ -78,15 +99,16 @@ const getData = () => {
   newItem.innerHTML = `${titleValue}`;
   const xSpan = newItem.appendChild(document.createElement("span"));
   xSpan.setAttribute("class", "removeTask");
-  xSpan.innerHTML = " x";
+  xSpan.innerHTML = "X";
   xSpan.addEventListener("click", () => removetask(idValue));
   noTaskSpan.setAttribute("class", "hidden");
   taskLabel.setAttribute("class", "");
+
+  clearInputs();
 };
 
 const showDetails = (e) => {
   const selectedTask = gettask(e.target.id);
-  console.log(selectedTask, "selectedTask");
 
   taskDisplayDiv.setAttribute("class", "");
   for (const div of taskDisplayDiv.children) {
